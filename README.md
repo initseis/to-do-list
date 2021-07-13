@@ -2,7 +2,7 @@
 
 > This is my website for a To Do List
 
-![screenshot](./img/app-screenshot.png)
+![screenshot](./src/img/app-screenshot.png)
 
 ## Built With
 
