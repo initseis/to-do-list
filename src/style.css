@@ -1,0 +1,108 @@
+* {
+  box-sizing: border-box;
+  font-family: Lato, sans-serif;
+  font-weight: 300;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  margin: 200px auto 0 auto;
+  padding: 0;
+  max-width: 450px;
+  background-color: #fff;
+  box-shadow: 3px 3px 3px 3px #cbcbcb;
+}
+
+#title {
+  margin: 0;
+  padding: 0 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+}
+
+#title h4 {
+  font-weight: 400;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+#add-div {
+  display: flex;
+  padding: 0 10px;
+}
+
+#add-div button {
+  margin: 0;
+  padding: 0;
+  width: 20px;
+}
+
+#add-to-list {
+  margin: 0;
+  padding: 0;
+  resize: none;
+  height: 50px;
+  line-height: 50px;
+  overflow: hidden;
+  width: 100%;
+  border: none;
+  outline: none;
+}
+
+#add-to-list::placeholder {
+  font-style: italic;
+  line-height: 50px;
+}
+
+.item {
+  padding: 0 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 45px;
+}
+
+.item input {
+  margin-right: 10px;
+}
+
+label {
+  justify-self: flex-start;
+}
+
+input:checked + label {
+  color: #909090;
+  text-decoration: line-through;
+}
+
+hr {
+  margin: 0;
+  padding: 0;
+  border-top: #fff;
+  border-color: #f6f6f6;
+}
+
+#clear {
+  width: 100%;
+  text-align: center;
+  height: 50px;
+  font-size: 1rem;
+  background-color: #f6f6f6;
+  color: #909090;
+}
+
+#clear:hover {
+  color: #000;
+  text-decoration: underline;
+}
