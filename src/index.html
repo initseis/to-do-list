@@ -4,8 +4,36 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Webpack Exercise</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./index.js" defer></script>
   </head>
   <body>
-    <h1>Hello webpack!</h1>
+    <main>
+      <div id="title">
+        <h4>Today's To Do</h4>
+        <button>
+          <img src="img/reload.svg" alt="reload icon" width="20" />
+        </button>
+      </div>
+      <div id="add-div">
+        <textarea
+          name=""
+          id="add-to-list"
+          placeholder="Add to your list..."
+        ></textarea>
+        <button><img src="img/enter.svg" alt="" width="10" /></button>
+      </div>
+      <ul id="list">
+        <!-- <li class="item">
+          <label><input type="checkbox" /> Este es mi primer checkbox</label>
+          <button><img src="img/three-dots.svg" alt="" width="15" /></button>
+        </li>
+        <li class="item">
+          <label><input type="checkbox" /> Este es mi primer checkbox</label>
+          <button><img src="img/three-dots.svg" alt="" width="15" /></button>
+        </li> -->
+      </ul>
+      <button>Clear all completed</button>
+    </main>
   </body>
 </html>

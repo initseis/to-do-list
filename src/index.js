@@ -1,13 +1,25 @@
-import _ from "lodash";
-import "./style.css";
+// import "./style.css";
+const list = [
+  {
+    description: "Wash the dishes",
+    completed: false,
+    index: 1,
+  },
+  {
+    description: "Complete To Do list project",
+    completed: false,
+    index: 2,
+  },
+];
 
-function component() {
-  const element = document.createElement("div");
+const listUl = document.getElementById("list");
 
-  // Lodash, currently included via a script, is required for this line to work
-  element.innerHTML = _.join(["Hello", "webpack"], " ");
-
-  return element;
-}
-
-document.body.appendChild(component());
+list.forEach((toDo) => {
+  const toDoLi = document.createElement("li");
+  toDoLi.innerHTML = `
+  <li class="item">
+          <label><input type="checkbox" />${toDo.description}</label>
+          <button><img src="img/three-dots.svg" alt="" width="15" /></button>
+        </li>`;
+  listUl.appendChild(toDoLi);
+});
