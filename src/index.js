@@ -1,25 +1,34 @@
-// import "./style.css";
+import "./style.css";
 const list = [
   {
+    index: 2,
     description: "Wash the dishes",
     completed: false,
-    index: 1,
   },
   {
+    index: 1,
     description: "Complete To Do list project",
     completed: false,
-    index: 2,
   },
 ];
 
 const listUl = document.getElementById("list");
 
-list.forEach((toDo) => {
-  const toDoLi = document.createElement("li");
-  toDoLi.innerHTML = `
-  <li class="item">
-          <label><input type="checkbox" />${toDo.description}</label>
-          <button><img src="img/three-dots.svg" alt="" width="15" /></button>
-        </li>`;
-  listUl.appendChild(toDoLi);
-});
+function loadList() {
+  for (let i = 1; i <= list.length; i++) {
+    for (let j = 0; j < list.length; j++) {
+      if (list[j].index == i) {
+        const toDoLi = document.createElement("li");
+        toDoLi.className = "item";
+        toDoLi.innerHTML = `
+                  <div class="check-div">
+                  <input id="input-${list[j].index}" type="checkbox"/><label for="input-${list[j].index}" >${list[j].description}</label></div>
+                  <button><img src="img/three-dots.svg" alt="" width="15" /></button>`;
+        listUl.appendChild(toDoLi);
+        listUl.appendChild(document.createElement("hr"));
+      }
+    }
+  }
+}
+
+document.addEventListener("DOMContentLoaded", loadList);

@@ -4,17 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Webpack Exercise</title>
-    <link rel="stylesheet" href="./style.css" />
-    <script src="./index.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <main>
       <div id="title">
         <h4>Today's To Do</h4>
         <button>
-          <img src="img/reload.svg" alt="reload icon" width="20" />
+          <img src="./img/reload.svg" alt="reload icon" width="20" />
         </button>
       </div>
+      <hr />
       <div id="add-div">
         <textarea
           name=""
@@ -23,17 +28,9 @@
         ></textarea>
         <button><img src="img/enter.svg" alt="" width="10" /></button>
       </div>
-      <ul id="list">
-        <!-- <li class="item">
-          <label><input type="checkbox" /> Este es mi primer checkbox</label>
-          <button><img src="img/three-dots.svg" alt="" width="15" /></button>
-        </li>
-        <li class="item">
-          <label><input type="checkbox" /> Este es mi primer checkbox</label>
-          <button><img src="img/three-dots.svg" alt="" width="15" /></button>
-        </li> -->
-      </ul>
-      <button>Clear all completed</button>
+      <hr />
+      <ul id="list"></ul>
+      <button id="clear">Clear all completed</button>
     </main>
   </body>
 </html>
