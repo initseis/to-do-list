@@ -25,8 +25,6 @@ const list = [
   },
 ];
 
-document.addEventListener("DOMContentLoaded", DragAndSort.sortList(list));
-
 function loadLiEvents() {
   const liElements = document.querySelectorAll(".item");
   for (let i = 0; i < liElements.length; i++) {
@@ -39,10 +37,6 @@ function loadLiEvents() {
 
 document.addEventListener("DOMContentLoaded", loadLiEvents);
 
-function call() {
-  console.log("Heyyy");
-}
-
 function loadCheckboxes() {
   const checkboxes = document.querySelectorAll(".checks");
   for (let i = 0; i < checkboxes.length; i++) {
@@ -52,3 +46,14 @@ function loadCheckboxes() {
 }
 
 document.addEventListener("DOMContentLoaded", loadCheckboxes);
+
+// LOCAL STORAGE
+
+if (!localStorage.ToDoList) {
+  document.addEventListener("DOMContentLoaded", DragAndSort.sortList(list));
+} else {
+  document.addEventListener(
+    "DOMContentLoaded",
+    DragAndSort.sortList(JSON.parse(localStorage.getItem("ToDoList")))
+  );
+}

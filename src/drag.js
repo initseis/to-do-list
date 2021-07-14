@@ -1,3 +1,5 @@
+import { Status } from "./status.js";
+
 var dragging = null;
 var targing = null;
 
@@ -29,6 +31,21 @@ export class DragAndSort {
     dragging.style.display = "flex";
     console.log("Drop " + target.className);
     target.parentNode.insertBefore(dragging, targing);
+    // Save in Local Storage
+    const newList = [];
+    const listLi = document.querySelectorAll(".item");
+    for (let i = 0; i < listLi.length; i++) {
+      newList.push({
+        index: i + 1,
+        description:
+          listLi[i].firstChild.nextSibling.firstChild.nextSibling.nextSibling
+            .textContent,
+        completed:
+          listLi[i].firstChild.nextSibling.firstChild.nextSibling.checked,
+      });
+    }
+    console.log(newList);
+    localStorage.setItem("ToDoList", JSON.stringify(newList));
   }
 
   static getLI(target) {
@@ -54,7 +71,7 @@ export class DragAndSort {
           toDoLi.className = `item ${list[j].index}`;
           toDoLi.innerHTML = `
                   <div class="check-div">
-                  <input class="checks" id="input-${list[j].index}" type="checkbox"/><textarea name="description"">${list[j].description}</textarea></div>
+                  <input class="checks" type="checkbox"/><textarea name="description"">${list[j].description}</textarea></div>
                   <button draggable="true" ><img src="img/three-dots.svg" alt="" width="15" /></button>`;
           listUl.appendChild(toDoLi);
         }
