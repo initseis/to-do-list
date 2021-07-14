@@ -7,14 +7,12 @@ export class DragAndSort {
   dragStart(event) {
     var target = DragAndSort.getLI(event.target);
     dragging = target;
-    console.log("Start " + dragging.className);
     event.dataTransfer.setDragImage(dragging, 0, 0);
   }
 
   dragOver(event) {
     event.preventDefault();
     var target = DragAndSort.getLI(event.target);
-    console.log("Over " + target.className);
     dragging.style.display = "none";
     var bounding = target.getBoundingClientRect();
     var offset = bounding.y + 46 - event.clientY;
@@ -29,23 +27,9 @@ export class DragAndSort {
     event.preventDefault();
     var target = DragAndSort.getLI(event.target);
     dragging.style.display = "flex";
-    console.log("Drop " + target.className);
     target.parentNode.insertBefore(dragging, targing);
     // Save in Local Storage
-    const newList = [];
-    const listLi = document.querySelectorAll(".item");
-    for (let i = 0; i < listLi.length; i++) {
-      newList.push({
-        index: i + 1,
-        description:
-          listLi[i].firstChild.nextSibling.firstChild.nextSibling.nextSibling
-            .textContent,
-        completed:
-          listLi[i].firstChild.nextSibling.firstChild.nextSibling.checked,
-      });
-    }
-    console.log(newList);
-    localStorage.setItem("ToDoList", JSON.stringify(newList));
+    Status.saveChanges();
   }
 
   static getLI(target) {
@@ -69,10 +53,50 @@ export class DragAndSort {
         if (list[j].index === i) {
           const toDoLi = document.createElement("li");
           toDoLi.className = `item ${list[j].index}`;
-          toDoLi.innerHTML = `
-                  <div class="check-div">
-                  <input class="checks" type="checkbox"/><textarea name="description"">${list[j].description}</textarea></div>
-                  <button draggable="true" ><img src="img/three-dots.svg" alt="" width="15" /></button>`;
+          if (list[j].completed) {
+            const checkDiv = document.createElement("div");
+            checkDiv.className = "check-div";
+            toDoLi.appendChild(checkDiv);
+            const checks = document.createElement("input");
+            checks.className = "checks";
+            checks.type = "checkbox";
+            checks.checked = "true";
+            checkDiv.appendChild(checks);
+            const descTextArea = document.createElement("textarea");
+            descTextArea.name = "description";
+            descTextArea.innerText = list[j].description;
+            descTextArea.style["text-decoration"] = "line-through";
+            descTextArea.style.color = "#909090";
+            checkDiv.appendChild(descTextArea);
+            const dragBtn = document.createElement("button");
+            dragBtn.draggable = "true";
+            const imgDots = document.createElement("img");
+            imgDots.src = "img/three-dots.svg";
+            imgDots.alt = "3 dots icon";
+            imgDots.width = "15";
+            dragBtn.appendChild(imgDots);
+            toDoLi.appendChild(dragBtn);
+          } else {
+            const checkDiv = document.createElement("div");
+            checkDiv.className = "check-div";
+            toDoLi.appendChild(checkDiv);
+            const checks = document.createElement("input");
+            checks.className = "checks";
+            checks.type = "checkbox";
+            checkDiv.appendChild(checks);
+            const descTextArea = document.createElement("textarea");
+            descTextArea.name = "description";
+            descTextArea.innerText = list[j].description;
+            checkDiv.appendChild(descTextArea);
+            const dragBtn = document.createElement("button");
+            dragBtn.draggable = "true";
+            const imgDots = document.createElement("img");
+            imgDots.src = "img/three-dots.svg";
+            imgDots.alt = "3 dots icon";
+            imgDots.width = "15";
+            dragBtn.appendChild(imgDots);
+            toDoLi.appendChild(dragBtn);
+          }
           listUl.appendChild(toDoLi);
         }
       }

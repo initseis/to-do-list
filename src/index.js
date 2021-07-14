@@ -1,4 +1,4 @@
-// import './style.css';
+import "./style.css";
 import { DragAndSort } from "./drag.js";
 import { Status } from "./status.js";
 
