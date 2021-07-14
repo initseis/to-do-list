@@ -1,5 +1,6 @@
 // import './style.css';
-import { Drag } from "./drag.js";
+import { DragAndSort } from "./drag.js";
+import { Status } from "./status.js";
 
 const list = [
   {
@@ -24,37 +25,30 @@ const list = [
   },
 ];
 
-const listUl = document.getElementById("list");
-
-function loadList() {
-  for (let i = 1; i <= list.length; i += 1) {
-    for (let j = 0; j < list.length; j += 1) {
-      if (list[j].index === i) {
-        const toDoLi = document.createElement("li");
-        toDoLi.className = `item ${list[j].index}`;
-        toDoLi.innerHTML = `
-                  <div class="check-div">
-                  <input id="input-${list[j].index}" type="checkbox"/><textarea name="description"">${list[j].description}</textarea></div>
-                  <button draggable="true" ><img src="img/three-dots.svg" alt="" width="15" /></button>`;
-        listUl.appendChild(toDoLi);
-        // listUl.appendChild(document.createElement("hr"));
-      }
-    }
-  }
-}
-
-document.addEventListener("DOMContentLoaded", loadList);
+document.addEventListener("DOMContentLoaded", DragAndSort.sortList(list));
 
 function loadLiEvents() {
   const liElements = document.querySelectorAll(".item");
-  // console.log(liElements);
   for (let i = 0; i < liElements.length; i++) {
-    const drag = new Drag();
+    const drag = new DragAndSort();
     liElements[i].addEventListener("dragstart", drag.dragStart);
     liElements[i].addEventListener("dragover", drag.dragOver);
-    liElements[i].addEventListener("dragleave", drag.dragLeave);
     liElements[i].addEventListener("drop", drag.drop);
   }
 }
 
 document.addEventListener("DOMContentLoaded", loadLiEvents);
+
+function call() {
+  console.log("Heyyy");
+}
+
+function loadCheckboxes() {
+  const checkboxes = document.querySelectorAll(".checks");
+  for (let i = 0; i < checkboxes.length; i++) {
+    const status = new Status();
+    checkboxes[i].addEventListener("change", status.validation);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", loadCheckboxes);
