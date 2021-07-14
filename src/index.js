@@ -1,6 +1,6 @@
 import "./style.css";
-import { DragAndSort } from "./drag.js";
-import { Status } from "./status.js";
+import DragAndSort from "./drag.js";
+import Status from "./status.js";
 
 const list = [
   {
@@ -27,7 +27,7 @@ const list = [
 
 function loadLiEvents() {
   const liElements = document.querySelectorAll(".item");
-  for (let i = 0; i < liElements.length; i++) {
+  for (let i = 0; i < liElements.length; i += 1) {
     const drag = new DragAndSort();
     liElements[i].addEventListener("dragstart", drag.dragStart);
     liElements[i].addEventListener("dragover", drag.dragOver);
@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", loadLiEvents);
 
 function loadCheckboxes() {
   const checkboxes = document.querySelectorAll(".checks");
-  for (let i = 0; i < checkboxes.length; i++) {
+  for (let i = 0; i < checkboxes.length; i += 1) {
     const status = new Status();
     checkboxes[i].addEventListener("change", status.validation);
   }
