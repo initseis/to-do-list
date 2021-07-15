@@ -84,7 +84,7 @@ button {
   margin-right: 10px;
 }
 
-.item textarea {
+.item .item-description {
   margin: 0;
   padding: 0;
   resize: none;
