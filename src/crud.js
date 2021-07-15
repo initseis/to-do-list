@@ -1,4 +1,5 @@
 import Status from "./status.js";
+import DragAndSort from "./drag.js";
 
 export default class Crud {
   addToList(event) {
@@ -6,18 +7,25 @@ export default class Crud {
       const listUl = document.getElementById("list");
       const toDoLi = document.createElement("li");
       toDoLi.className = "item";
+      const drag = new DragAndSort();
+      toDoLi.addEventListener("dragstart", drag.dragStart);
+      toDoLi.addEventListener("dragover", drag.dragOver);
+      toDoLi.addEventListener("drop", drag.drop);
       const checkDiv = document.createElement("div");
       checkDiv.className = "check-div";
       toDoLi.appendChild(checkDiv);
       const checks = document.createElement("input");
       checks.className = "checks";
       checks.type = "checkbox";
+      const status = new Status();
+      checks.addEventListener("change", status.validation);
       checkDiv.appendChild(checks);
       const descTextArea = document.createElement("input");
       descTextArea.className = "item-description";
       descTextArea.type = "text";
       descTextArea.name = "description";
       descTextArea.value = event.target.value;
+      descTextArea.addEventListener("input", Crud.updateTask);
       checkDiv.appendChild(descTextArea);
       const dragBtn = document.createElement("button");
       dragBtn.draggable = "true";
@@ -31,5 +39,9 @@ export default class Crud {
       event.target.value = "";
       Status.saveChanges();
     }
+  }
+
+  updateTask() {
+    Status.saveChanges();
   }
 }
