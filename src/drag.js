@@ -51,7 +51,7 @@ export default class DragAndSort {
       for (let j = 0; j < list.length; j += 1) {
         if (list[j].index === i) {
           const toDoLi = document.createElement('li');
-          toDoLi.className = `item ${list[j].index}`;
+          toDoLi.className = 'item';
           if (list[j].completed) {
             const checkDiv = document.createElement('div');
             checkDiv.className = 'check-div';
@@ -61,9 +61,11 @@ export default class DragAndSort {
             checks.type = 'checkbox';
             checks.checked = 'true';
             checkDiv.appendChild(checks);
-            const descTextArea = document.createElement('textarea');
+            const descTextArea = document.createElement('input');
+            descTextArea.className = 'item-description';
+            descTextArea.type = 'text';
             descTextArea.name = 'description';
-            descTextArea.innerText = list[j].description;
+            descTextArea.value = list[j].description;
             descTextArea.style['text-decoration'] = 'line-through';
             descTextArea.style.color = '#909090';
             checkDiv.appendChild(descTextArea);
@@ -83,9 +85,11 @@ export default class DragAndSort {
             checks.className = 'checks';
             checks.type = 'checkbox';
             checkDiv.appendChild(checks);
-            const descTextArea = document.createElement('textarea');
+            const descTextArea = document.createElement('input');
+            descTextArea.className = 'item-description';
+            descTextArea.type = 'text';
             descTextArea.name = 'description';
-            descTextArea.innerText = list[j].description;
+            descTextArea.value = list[j].description;
             checkDiv.appendChild(descTextArea);
             const dragBtn = document.createElement('button');
             dragBtn.draggable = 'true';

@@ -19,7 +19,7 @@ export default class Status {
     for (let i = 0; i < listLi.length; i += 1) {
       newList.push({
         index: i + 1,
-        description: listLi[i].firstChild.firstChild.nextSibling.textContent,
+        description: listLi[i].firstChild.firstChild.nextSibling.value,
         completed: listLi[i].firstChild.firstChild.checked,
       });
     }
