@@ -52,6 +52,10 @@ button {
   padding: 0 10px;
 }
 
+.item > button {
+  cursor: move;
+}
+
 #add-div button {
   margin: 0;
   padding: 0;
@@ -106,10 +110,6 @@ button {
   outline: none;
   border-bottom: 1px solid #f6f6f6;
   background-color: transparent;
-}
-
-.item > button {
-  cursor: move;
 }
 
 hr {
