@@ -16,8 +16,8 @@ function loadLiEvents() {
   const itemDesc = document.querySelectorAll(".item-description");
   for (let j = 0; j < liElements.length; j += 1) {
     const crud = new Crud();
-    itemDesc[j].addEventListener("input", crud.updateTask);
-    itemDesc[j].addEventListener("focusin", crud.showTrash);
+    itemDesc[j].addEventListener("input", crud.updateTask); // Update Elements
+    itemDesc[j].addEventListener("focusin", crud.showTrashAndRemove); // Remove Elements
     itemDesc[j].addEventListener("focusout", crud.showDots);
   }
 }
@@ -46,8 +46,9 @@ if (!localStorage.ToDoList) {
 }
 
 // ADD ELEMENTS
-
 const newItem = document.getElementById("add-to-list");
 const newCrud = new Crud();
-
 newItem.addEventListener("keypress", newCrud.addToList);
+// Remove All
+const btnClear = document.getElementById("clear");
+btnClear.addEventListener("click", newCrud.clearCompleted);

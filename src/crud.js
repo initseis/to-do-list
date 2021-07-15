@@ -27,7 +27,7 @@ export default class Crud {
       descTextArea.value = event.target.value;
       const crud = new Crud();
       descTextArea.addEventListener("input", crud.updateTask);
-      descTextArea.addEventListener("focusin", crud.showTrash);
+      descTextArea.addEventListener("focusin", crud.showTrashAndRemove);
       descTextArea.addEventListener("focusout", crud.showDots);
       checkDiv.appendChild(descTextArea);
       const dragBtn = document.createElement("button");
@@ -56,7 +56,7 @@ export default class Crud {
     Status.saveChanges();
   }
 
-  showTrash() {
+  showTrashAndRemove() {
     this.parentNode.nextSibling.firstChild.src = "./img/trash.svg";
     this.parentNode.nextSibling.addEventListener("click", () => {
       this.parentNode.parentNode.remove();
@@ -66,5 +66,15 @@ export default class Crud {
 
   showDots() {
     this.parentNode.nextSibling.firstChild.src = "./img/three-dots.svg";
+  }
+
+  clearCompleted() {
+    const liList = document.querySelectorAll(".item");
+    for (let i = 0; i < liList.length; i++) {
+      if (liList[i].firstChild.firstChild.checked) {
+        liList[i].remove();
+      }
+    }
+    Status.saveChanges();
   }
 }
