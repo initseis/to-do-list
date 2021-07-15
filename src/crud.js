@@ -45,11 +45,23 @@ export default class Crud {
   }
 
   updateTask() {
+    this.addEventListener("keypress", (event) => {
+      if (event.key == "Enter") {
+        if (this.value == "") {
+          this.parentNode.parentNode.remove();
+          Status.saveChanges();
+        }
+      }
+    });
     Status.saveChanges();
   }
 
   showTrash() {
     this.parentNode.nextSibling.firstChild.src = "./img/trash.svg";
+    this.parentNode.nextSibling.addEventListener("click", () => {
+      this.parentNode.parentNode.remove();
+      Status.saveChanges();
+    });
   }
 
   showDots() {
