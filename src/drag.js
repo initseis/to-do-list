@@ -51,7 +51,7 @@ export default class DragAndSort {
       for (let j = 0; j < list.length; j += 1) {
         if (list[j].index === i) {
           const toDoLi = document.createElement("li");
-          toDoLi.className = `item ${list[j].index}`;
+          toDoLi.className = `item`;
           if (list[j].completed) {
             const checkDiv = document.createElement("div");
             checkDiv.className = "check-div";

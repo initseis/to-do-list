@@ -58,6 +58,8 @@ export default class Crud {
 
   showTrashAndRemove() {
     this.parentNode.nextSibling.firstChild.src = "./img/trash.svg";
+    this.parentNode.nextSibling.style.cursor = "pointer";
+    this.parentNode.parentNode.style["background-color"] = "#fffdca";
     this.parentNode.nextSibling.addEventListener("click", () => {
       this.parentNode.parentNode.remove();
       Status.saveChanges();
@@ -66,6 +68,8 @@ export default class Crud {
 
   showDots() {
     this.parentNode.nextSibling.firstChild.src = "./img/three-dots.svg";
+    this.parentNode.parentNode.style["background-color"] = "#fff";
+    this.parentNode.nextSibling.style.cursor = "move";
   }
 
   clearCompleted() {
