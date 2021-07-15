@@ -17,6 +17,8 @@ function loadLiEvents() {
   for (let j = 0; j < liElements.length; j += 1) {
     const crud = new Crud();
     itemDesc[j].addEventListener("input", crud.updateTask);
+    itemDesc[j].addEventListener("focusin", crud.showTrash);
+    itemDesc[j].addEventListener("focusout", crud.showDots);
   }
 }
 

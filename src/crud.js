@@ -25,7 +25,10 @@ export default class Crud {
       descTextArea.type = "text";
       descTextArea.name = "description";
       descTextArea.value = event.target.value;
-      descTextArea.addEventListener("input", Crud.updateTask);
+      const crud = new Crud();
+      descTextArea.addEventListener("input", crud.updateTask);
+      descTextArea.addEventListener("focusin", crud.showTrash);
+      descTextArea.addEventListener("focusout", crud.showDots);
       checkDiv.appendChild(descTextArea);
       const dragBtn = document.createElement("button");
       dragBtn.draggable = "true";
@@ -43,5 +46,13 @@ export default class Crud {
 
   updateTask() {
     Status.saveChanges();
+  }
+
+  showTrash() {
+    this.parentNode.nextSibling.firstChild.src = "./img/trash.svg";
+  }
+
+  showDots() {
+    this.parentNode.nextSibling.firstChild.src = "./img/three-dots.svg";
   }
 }
