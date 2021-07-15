@@ -71,19 +71,30 @@ button {
   justify-content: space-between;
   align-items: center;
   height: 45px;
+  border-bottom: 1px solid #f6f6f6;
+}
+
+.check-div {
+  display: flex;
+  width: 100%;
+  align-items: center;
 }
 
 .item input {
   margin-right: 10px;
 }
 
-label {
-  justify-self: flex-start;
-}
-
-input:checked + label {
-  color: #909090;
-  text-decoration: line-through;
+.item textarea {
+  margin: 0;
+  padding: 0;
+  resize: none;
+  height: 45px;
+  line-height: 50px;
+  overflow: hidden;
+  width: 100%;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #f6f6f6;
 }
 
 hr {

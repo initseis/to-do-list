@@ -1,4 +1,6 @@
 import './style.css';
+import DragAndSort from './drag.js';
+import Status from './status.js';
 
 const list = [
   {
@@ -11,25 +13,47 @@ const list = [
     description: 'Complete To Do list project',
     completed: false,
   },
+  {
+    index: 4,
+    description: 'Go out the dog',
+    completed: false,
+  },
+  {
+    index: 3,
+    description: 'Go to the gym',
+    completed: false,
+  },
 ];
 
-const listUl = document.getElementById('list');
-
-function loadList() {
-  for (let i = 1; i <= list.length; i += 1) {
-    for (let j = 0; j < list.length; j += 1) {
-      if (list[j].index === i) {
-        const toDoLi = document.createElement('li');
-        toDoLi.className = 'item';
-        toDoLi.innerHTML = `
-                  <div class="check-div">
-                  <input id="input-${list[j].index}" type="checkbox"/><label for="input-${list[j].index}" >${list[j].description}</label></div>
-                  <button><img src="img/three-dots.svg" alt="" width="15" /></button>`;
-        listUl.appendChild(toDoLi);
-        listUl.appendChild(document.createElement('hr'));
-      }
-    }
+function loadLiEvents() {
+  const liElements = document.querySelectorAll('.item');
+  for (let i = 0; i < liElements.length; i += 1) {
+    const drag = new DragAndSort();
+    liElements[i].addEventListener('dragstart', drag.dragStart);
+    liElements[i].addEventListener('dragover', drag.dragOver);
+    liElements[i].addEventListener('drop', drag.drop);
   }
 }
 
-document.addEventListener('DOMContentLoaded', loadList);
+document.addEventListener('DOMContentLoaded', loadLiEvents);
+
+function loadCheckboxes() {
+  const checkboxes = document.querySelectorAll('.checks');
+  for (let i = 0; i < checkboxes.length; i += 1) {
+    const status = new Status();
+    checkboxes[i].addEventListener('change', status.validation);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', loadCheckboxes);
+
+// LOCAL STORAGE
+
+if (!localStorage.ToDoList) {
+  document.addEventListener('DOMContentLoaded', DragAndSort.sortList(list));
+} else {
+  document.addEventListener(
+    'DOMContentLoaded',
+    DragAndSort.sortList(JSON.parse(localStorage.getItem('ToDoList'))),
+  );
+}
