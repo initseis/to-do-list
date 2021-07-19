@@ -8,6 +8,10 @@
 
 - HTML & CSS & JS & WEBPACK
 
+## Demo
+
+- Online (https://sevinchek.github.io/to-do-list/)
+
 ## Project Setup
 
 - Clone this repository (use this SSH key git@github.com:sevinchek/to-do-list.git)
